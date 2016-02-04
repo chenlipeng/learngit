@@ -1,3 +1,22 @@
-
 //clone 到指定目录 learnGit-newDir
-git clone git@github.com:chenlipeng/learnGit learnGit-newDir
+git clone git@github.com:chenlipeng/learnGit.git [newDirectory]
+
+//clone 到默认文件夹learnGit
+git clone git@github.com:chenlipeng/learnGit.git
+
+//从分支[branch-name] 进行更新 一般为master
+git pull origin [branch-name]
+
+//在本地修改后将代码上传远程仓库的步骤
+//添加修改的文件 可多次添加
+git add [fileName]
+
+git commit -m "对本次修改进行说明"
+git push origin [branch-name]
+
+
+//添加子模块
+git submodule add git@github.com:chenlipeng/learnGit.git
+
+//对子模块进行更新
+git submodule update
