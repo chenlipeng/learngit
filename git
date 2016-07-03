@@ -7,6 +7,15 @@ git clone git@github.com:chenlipeng/learnGit.git
 //从分支[branch-name] 进行更新 一般为master
 git pull origin [branch-name]
 
+//创建自己的分支
+git branch [branch-name]
+
+//查看工作区所有分支信息
+git branch
+
+//改变当前开发分支
+git checkout [branch-name]
+
 //在本地修改后将代码上传远程仓库的步骤
 //添加修改的文件 可多次添加
 git add [fileName]
@@ -20,3 +29,32 @@ git submodule add git@github.com:chenlipeng/learnGit.git
 
 //对子模块进行更新
 git submodule update
+
+//版本回退
+//回退到上一次commit
+git reset --hard HEAD^
+//回退到上上一次commit
+git reset --hard HEAD^^
+
+//回退到某一次commit
+git reset --hard HEAD^^
+
+//提交回退后的版本 -f 表示force 强制push
+git push -f origin [branch-name]
+
+//查看当前状态
+git status
+
+//查看所有修改
+git diff
+
+//查看某个文件的修改
+git diff [file-name]
+
+//删除文件
+git rm [file-name]
+
+//删除目录
+git rm -r [dir-name]
+
+
