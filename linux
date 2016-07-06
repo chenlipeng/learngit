@@ -1,0 +1,5 @@
+//批量生成100个文件
+for i in `seq 100`;do touch foo$i; done
+
+//批量对文件进行重命名 - 文件名中foo
+rename foo foo0 *
