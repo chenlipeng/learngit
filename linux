@@ -3,3 +3,6 @@ for i in `seq 100`;do touch foo$i; done
 
 //批量对文件进行重命名 - 文件名中foo
 rename foo foo0 *
+
+//建立多级目录
+mkdir -p /dir1/dir2/dir3/dir4
