@@ -1,0 +1,54 @@
+#命令行下发送邮件的步骤: 
+telnet smtp.163.com 25
+
+HELO 163.com
+
+#用户名 经base64编码后输入
+AUTH LOGIN bXluYW1laXNjaGVubGlwZW5nQDE2My5jb20=
+
+#密码 经base64编码后输入
+MTEyMzU4MTMyMTM0NTU4OQ==
+
+MAIL FROM: <mynameischenlipeng@163.com>
+
+RCPT TO: <850391612@qq.com>
+
+DATA
+FROM: mynameischenlipeng@163.com
+TO: 850391612@qq.com
+SUBJECT: THIS IS A TEST
+#空一行 然后开始正文
+
+It's nice to be important. But It's more important to be nice!
+.
+# . 然后回车 表示正文部分的结束
+
+
+例如:
+[chenlipeng@jelly01 ~]$ telnet smtp.163.com 25
+Trying 220.181.12.15...
+Connected to smtp.163.com.
+Escape character is '^]'.
+220 ***********************************************************
+HELO 163.com
+250 OK
+AUTH LOGIN bXluYW1laXNjaGVubGlwZW5nQDE2My5jb20=
+334 UGFzc3dvcmQ6
+MTEyMzU4MTMyMTM0NTU4OQ==
+235 Authentication successful
+MAIL FROM: <mynameischenlipeng@163.com>
+250 Mail OK
+RCPT TO: <850391612@qq.com>
+250 Mail OK
+DATA
+354 End data with <CR><LF>.<CR><LF>
+FROM: chenlipeng
+TO: 850391612@qq.com
+SUBJECT: nice
+
+It's nice to be important. But It's more important to be nice!
+.
+250 Mail OK queued as smtp11,D8CowADnDeJ90K5XcydbCQ--.42990S2 1471074503
+
+421 closing transmission channel
+Connection closed by foreign host.

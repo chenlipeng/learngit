@@ -1,0 +1,5 @@
+#fatal: pathspec 'origin' did not match any files
+由于使用过[git remote add origin git@github.com:chenlipeng/somefile.git]
+如果[git@github.com:chenlipeng/somefile.git]输入错误，需要修改origin
+此时需要使用[git remote rm origin]删除origin，然后再次指定origin
+
