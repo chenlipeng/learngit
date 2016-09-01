@@ -1,4 +1,0 @@
-git submodule add git@github.com:chenlipeng/learnGit.git
-
-//对子模块进行更新
-git submodule update

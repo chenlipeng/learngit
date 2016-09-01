@@ -1,5 +1,0 @@
-//生成tags文件
-ctags –R *
-
-//在vim中设置
-set tags+=/path/tags
