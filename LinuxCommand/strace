@@ -1,0 +1,13 @@
+#strace
+
+#FORMAT
+
+命令功能:
+
+常用选项:
+
+常用命令:
+
+例子:
+	strace -p [pid]
+	查看进程pid

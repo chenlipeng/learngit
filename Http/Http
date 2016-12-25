@@ -1,0 +1,42 @@
+HTTP/2 与 HTTP/1.1 HTTP/1.0
+
+	客户端是依据域名来向服务器建立连接，一般PC端浏览器会针对单个域名的server同时建立6～8个连接，手机端的连接数则一般控制在4～6个。显然连接数并不是越多越好，资源开销和整体延迟都会随之增大。
+
+一. HTTP/1.0
+	1.1 连接无法复用;
+	连接无法复用会导致每次请求都经历三次握手和慢启动。三次握手在高延迟的场景下影响较明显，慢启动则对文件类大请求影响较大。
+	1.2 head of line blocking
+	head of line blocking会导致带宽无法被充分利用，以及后续健康请求被阻塞。
+
+	1.3 解决连接无法复用
+	方案一：基于tcp的长链接
+
+	方案二：http long-polling
+
+	方案三：http streaming
+
+	方案四：web socket
+
+	1.4 解决head of line blocking
+	http pipelining
+
+
+二. HTTP/1.1
+	1.1
+	客户端需要多个HTTP连接来处理过个请求；
+
+	1.2 Http管线化(Http pipelining)
+	HTTP/1.0 一个TCP连接每次只能处理一个请求；
+	将多个HTTP请求整批提交的技术，在传输过程中，不需要先等待服务端的回应。仅HTTP/1.1支持此技术；
+	http管线化向网络上发送更少的tcp数据包;
+	在宽带连接中，加速不是那么显著的，因为需要服务器端应用 HTTP/1.1 协议:服务器端必须按照客户端的请求顺序恢复请求，这样整个连接还是先进先出的，对头阻塞（HOL blocking）可能会发生，造成延迟
+	http长连接: http持久化连接也称http长连接或者http连接复用,思想是使用同一个tcp连接去发送和接收多个http请求/响应,以便避免为每次单独的请求/应答建立新的连接
+
+	1.3 幂等
+	多次请求与一次请求的副作用相同，则可以认为是幂等的；
+	幂等  : GET DELETE PUT
+	非幂等:	POST
+
+Therefore, HTTP/1.0 and HTTP/1.1 clients that need to make many requests use multiple connections to a server in order to achieve concurrency and thereby reduce latency.
+
+

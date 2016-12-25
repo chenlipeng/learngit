@@ -1,0 +1,24 @@
+#!/bin/sh
+
+CHECK_STR=$( git diff --cached --name-status | awk -F"\t" 'BEGIN {
+    nerror = 0;
+}
+$1 != "D" && match($2, "\\.php$"){
+    is_error = system("php -l "$2" >/dev/null 2>/dev/null") != 0;
+    if (is_error) {
+        print "PHP syntax check failed for file: "$2;
+        nerror ++;
+    }
+}
+END {
+    print "\nphp syntax error file count "nerror"\n";
+}' )
+
+echo "$CHECK_STR"
+
+NERROR=$( echo "$CHECK_STR" | grep -oP '(?<=^php syntax error file count )\d+$' )
+
+if [[ $NERROR != "0" ]] ; 
+then
+	exit 1
+fi

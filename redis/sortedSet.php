@@ -8,7 +8,28 @@ $redis = new Redis();
 $redis->connect('localhost', 6379, 0.01);
 
 $redisKey = 'name';
+$offset = 0;
+$limit = 1;
 
+for ($index = 0; $index < 10; ++$index) {
+	//$redis->zadd($redisKey, $index, $index);
+}
+
+do {
+echo "xxxxxxxxxxxx\n";
+	$uids = $redis->zrangebyscore($redisKey, '-1000', '1000', array('limit' => array($offset, $limit)));
+var_dump($uids);
+	//$redis->zrem($redisKey, reset($uids));
+	if (!empty($uids)) {
+		$data = array_merge(array($redisKey), $uids);
+		//$ret = call_user_func_array(array($redis, 'zrem'), $data);
+	}
+	$offset += $limit;
+} while (!empty($uids));
+
+$ret = $redis->zcard($redisKey);
+var_dump($ret);
+return;
 
 /*
 $ret = $redis->exists($redisKey);
@@ -16,10 +37,33 @@ var_dump($ret);
 return;
 */
 
+$ret = $redis->zrangebyscore('name', '(0', '0', array('withscores' => TRUE));
+var_dump($ret);
+$ret = $redis->zrangebyscore('name', '(0', '+INF', array('withscores' => TRUE));
+var_dump($ret);
+array_pop($ret);
+var_dump($ret);
+return;
+$ret = array_flip($ret);
+$ret[2] = 1414;
+var_dump($ret);
+ksort($ret);
+var_dump($ret);
+if (isset($ret['23'])) {
+	echo "xxxxxxx\n";
+}
+return;
+
 
 //参数为: 键, score, value
 //ZADD name 123 'LIJUN'
-$ret = $redis->zadd('gender', time(), 'Shushu');
+for ($index=0; $index < 20; ++$index) {
+	$ret = $redis->zadd('name', $index * $index % 301, $index);
+	if (rand(0, 10) == 5) {
+		var_dump($index);
+	}
+}
+return;
 //var_dump($ret);
 /* 返回值
  * FALSE: 当 key 存在但不是有序集类型时
